@@ -55,7 +55,7 @@ class BookService {
 
   // UPDATE book by ID
   updateBook(id: number, requestBody: Partial<Omit<Book, "id" | "createdAt" | "notes">>) {
-    return this.api.put(`/api/books/"${id}`, requestBody);
+    return this.api.put(`/api/books/${id}`, requestBody);
   }
 
   // DELETE book by ID

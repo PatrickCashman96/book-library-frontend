@@ -1,9 +1,9 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react";
 import AddBook from "../components/AddBook";
-import bookService from "../services/book.service";
-import { Book } from "../services/book.service";
+import ShowBook from "../components/ShowBook";
+import bookService, { Book } from "../services/book.service";
 
-function BookPage(){
+function BookPage() {
   const [books, setBooks] = useState<Book[]>([]);
 
   const fetchBooks = async () => {
@@ -19,19 +19,26 @@ function BookPage(){
     fetchBooks();
   }, []);
 
-  return(
+  return (
     <div>
-      <h1>BOOOKS</h1>
+      <h1>BOOKS</h1>
       <AddBook refreshBooks={fetchBooks} />
-      <ul>
-        {books.map((book: any) => (
-          <li key={book.id}>
-            <strong>{book.title}</strong> by {book.author} ({book.year || "Unknown Year"})
-          </li>
+      <div className="book-list">
+        {books.map((book) => (
+          <ShowBook
+            key={book.id}
+            id={book.id}
+            title={book.title}
+            author={book.author}
+            genre={book.genre}
+            year={book.year}
+            userId={book.userId}
+            refreshBooks={fetchBooks}
+          />
         ))}
-      </ul>
+      </div>
     </div>
-  )
+  );
 }
 
 export default BookPage;

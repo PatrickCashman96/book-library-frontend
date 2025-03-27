@@ -4,6 +4,7 @@ import NavBar from './components/NavBar'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import BookPage from './pages/BookPage'
+import EditBookPage from './pages/EditBookPage'
 import './App.css'
 
 
@@ -32,6 +33,11 @@ function App() {
           <Route
             path='/books'
             element={<BookPage/>}
+          />
+          
+          <Route
+            path='/books/edit/:id'
+            element={<EditBookPage/>}
           />
           
         </Routes>
