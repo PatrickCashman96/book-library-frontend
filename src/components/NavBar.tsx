@@ -13,11 +13,12 @@ function NavBar(){
       
       {isLoggedin && (
         <>
-        <Link to="/my-snippets">
-            <button>My Snippets</button>
+          <Link to="/books">
+            <button>Books</button>
           </Link>
           <button onClick={logOutUser}>Logout</button>
           <span>{user && user.username}</span>
+          {console.log("username: ", user)}
         </>
       )}
       {!isLoggedin && (

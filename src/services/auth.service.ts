@@ -11,7 +11,6 @@ class AuthService {
 
     this.api.interceptors.request.use(config=>{
       const storedToken = localStorage.getItem("authToken");
-      console.log(storedToken)
 
       if(storedToken){
         config.headers.Authorization = `Bearer ${storedToken}`;
@@ -25,7 +24,7 @@ class AuthService {
     return this.api.post("/api/users/login", requestBody);
   }
 
-  signup(requestBody: {email: string; password: string; name: string}){
+  signup(requestBody: {email: string; password: string; username: string}){
     return this.api.post("/api/users/register", requestBody)
   }
 

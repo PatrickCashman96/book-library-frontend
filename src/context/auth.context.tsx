@@ -40,8 +40,16 @@ function AuthProviderWrapper({children}: {children: ReactNode}){
     if(storedToken){
       try {
         const response = await authService.verify();
+        const decoded = response.data.decoded;
+
+        const user = {
+          _id: String(decoded.userId),
+          email: "", // Email not in token, leave blank or add to token later
+          username: decoded.username,
+        };
+
         setIsLoggedin(true);
-        SetUser(response.data);
+        SetUser(user);
       } catch (error) {
         console.error("Invalid Token", error);
         setIsLoggedin(false);

@@ -1,32 +1,32 @@
 import { ChangeEvent, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authService from "../services/auth.service";
 
 function SignupPage(){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [username, setUserName] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
 
   const handleEmail = (e: ChangeEvent<HTMLInputElement>)=> setEmail(e.target.value);
   const handlePassword = (e: ChangeEvent<HTMLInputElement>)=> setPassword(e.target.value);
-  const handleName = (e: ChangeEvent<HTMLInputElement>)=> setName(e.target.value);
+  const handleName = (e: ChangeEvent<HTMLInputElement>)=> setUserName(e.target.value);
 
-  const handleSignupSubmit = async (e: ChangeEvent<HTMLFormElement>)=>{
+  const handleSignupSubmit = async (e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
 
-    const requestBody  = {email, password, name};
+    const requestBody  = {email, password, username};
     
     console.log(requestBody);
     
     try {
       await authService.signup(requestBody);
-      navigate('/login')
+      navigate('/login');
     } catch (error: any) {
       const errorDescription = error.response?.data?.message || "signup failed";
-      setErrorMessage(errorDescription)
+      setErrorMessage(errorDescription);
     }
 
   };
@@ -37,7 +37,7 @@ function SignupPage(){
 
       <form onSubmit={handleSignupSubmit}>
         <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} required={true}/>
+        <input type="text" name="username" value={username} onChange={handleName} required={true}/>
 
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={handleEmail} required={true}/>
