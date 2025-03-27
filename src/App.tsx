@@ -6,6 +6,7 @@ import SignupPage from './pages/SignupPage'
 import BookPage from './pages/BookPage'
 import EditBookPage from './pages/EditBookPage'
 import './App.css'
+import NotePage from './pages/NotePage'
 
 
 function App() {
@@ -38,6 +39,11 @@ function App() {
           <Route
             path='/books/edit/:id'
             element={<EditBookPage/>}
+          />
+          
+          <Route
+            path='/notes'
+            element={<NotePage/>}
           />
           
         </Routes>

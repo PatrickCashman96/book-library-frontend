@@ -16,6 +16,11 @@ function NavBar(){
           <Link to="/books">
             <button>Books</button>
           </Link>
+          
+          <Link to="/notes">
+            <button>Notes</button>
+          </Link>
+
           <button onClick={logOutUser}>Logout</button>
           <span>{user && user.username}</span>
           {console.log("username: ", user)}
@@ -29,7 +34,7 @@ function NavBar(){
 
           <Link to="/signup">
           <button>Signup</button>
-      </Link>
+          </Link>
 
         </>
       )}

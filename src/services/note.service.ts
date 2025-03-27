@@ -7,7 +7,15 @@ export interface Note {
   bookId: number;
   userId: number;
   createdAt: string;
+  book?: {
+    id: number;
+    title: string;
+    author: string;
+    genre?: string;
+    year?: number;
+  };
 }
+
 
 class NoteService {
   private api: AxiosInstance;
@@ -31,14 +39,14 @@ class NoteService {
     return this.api.post(`api/notes/book/${requestBody.bookId}`, requestBody);
   }
 
-  // GET all notes for a specific book (by the logged-in user)
-  getNotesByBook(bookId: number) {
-    return this.api.get<Note[]>(`/book/${bookId}`);
+  // GET all notes for the logged-in user
+  getMyNotes() {
+    return this.api.get<Note[]>("/api/notes");
   }
 
   // UPDATE a note
   updateNote(id: number, requestBody: Partial<Omit<Note, "id" | "createdAt" | "bookId" | "userId">>) {
-    return this.api.put(`api/notes${id}`, requestBody);
+    return this.api.put(`api/notes/${id}`, requestBody);
   }
 
   // DELETE a note
