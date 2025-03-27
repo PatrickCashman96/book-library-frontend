@@ -22,7 +22,7 @@ class NoteService {
 
   constructor() {
     this.api = axios.create({
-      baseURL: import.meta.env.VITE_SERVER_URL || "http://localhost:3000",
+      baseURL: import.meta.env.VITE_SERVICE_URL || "http://localhost:3000",
     });
 
     this.api.interceptors.request.use(config => {
